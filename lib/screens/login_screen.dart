@@ -1,4 +1,5 @@
 // lib/screens/login_screen.dart
+import 'package:comabem/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart'; // Importa a tela principal
 
@@ -107,6 +108,20 @@ class LoginScreen extends StatelessWidget {
                         'ENTRAR',
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
+                    ),
+                  ),
+
+                  // Botão para criar conta
+                  TextButton(
+                    onPressed: () {
+                      // Ação para navegar para a tela de cadastro
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const RegisterScreen()),
+                      );
+                    },
+                    child: const Text(
+                      'Criar uma conta',
+                      style: TextStyle(color: Colors.black54),
                     ),
                   ),
 

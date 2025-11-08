@@ -37,21 +37,15 @@ class HomeScreen extends StatelessWidget {
         itemCount: restaurantes.length,
         itemBuilder: (context, index) {
           final restaurante = restaurantes[index];
-          final ranking = index + 1;
 
           return Card(
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.blue,
-                child: Text(
-                  '$ranking',
-                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-              ),
-              title: Text(restaurante['nome']!),
-              subtitle: Text(restaurante['tipo']!),
-              trailing: const Icon(Icons.arrow_forward_ios),
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            clipBehavior: Clip.antiAlias,
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: InkWell(
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -61,6 +55,39 @@ class HomeScreen extends StatelessWidget {
                   ),
                 );
               },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Image.asset(
+                    'assets/images/${restaurante['imagem']!}',
+                    height: 150,
+                    fit: BoxFit.cover,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          restaurante['nome']!,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          restaurante['tipo']!,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey[700],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },
@@ -68,4 +95,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
